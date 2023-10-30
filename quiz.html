@@ -140,35 +140,39 @@
 
         // Calculate percentage
         function percentageCalculation() {
-            var groupScores = new Object(); // Scores for each group
-            var globalScore = 0; // Total score across all questions
-            var normalizedGroupScores = new Object(); // Normalized scores for each group
-            var normalizedGlobalScore; // Normalized total score
+    var groupScores = new Object(); // Scores for each group
+    var globalScore = 0; // Total score across all questions
+    var normalizedGroupScores = new Object(); // Normalized scores for each group
+    var normalizedGlobalScore; // Normalized total score
 
-            // Initialize groupScores object
-            for (const group of Object.keys(questionsObject[0].effects)) {
-                groupScores[group] = 0;
-            }
+    // Initialize groupScores object
+    if (questionsObject[0] && questionsObject[0].effects) {
+        for (const group of Object.keys(questionsObject[0].effects)) {
+            groupScores[group] = 0;
+        }
+    }
 
-            // Calculate group scores and global score
-            for (const id in answers) {
-                if (answers[id] !== null) {
-                    for (const group in questionsObject[id].effects) {
-                        groupScores[group] += answers[id] * questionsObject[id].effects[group];
-                        globalScore += answers[id] * questionsObject[id].effects[group];
-                    }
+    // Calculate group scores and global score
+    for (const id in answers) {
+        if (answers[id] !== null && questionsObject[id] && questionsObject[id].effects) {
+            for (const group in questionsObject[id].effects) {
+                if (typeof groupScores[group] !== 'undefined') {
+                    groupScores[group] += answers[id] * questionsObject[id].effects[group];
+                    globalScore += answers[id] * questionsObject[id].effects[group];
                 }
             }
-
-            // Normalize group scores to range 0 to 2
-            for (const group in groupScores) {
-                normalizedGroupScores[group] = ((groupScores[group] + 6) / 12).toFixed(2);
-            }
-
-            // Normalize global score to range -10 to 10
-            normalizedGlobalScore = ((globalScore / 84) * 10).toFixed(2);
-
-            return { groups: normalizedGroupScores, global: normalizedGlobalScore };
         }
+    }
+
+    // Normalize group scores to range 0 to 2
+    for (const group in groupScores) {
+        normalizedGroupScores[group] = ((groupScores[group] + 6) / 12).toFixed(2);
+    }
+
+    // Normalize global score to range -10 to 10
+    normalizedGlobalScore = ((globalScore / 84) * 10).toFixed(2);
+
+    return { groups: normalizedGroupScores, global: normalizedGlobalScore };
+}
     </script>
 </body>
