@@ -268,6 +268,21 @@
             }
         });
     }
+	// Retrieve stored values from session storage
+    var percentages = JSON.parse(window.sessionStorage.getItem('percentages'));
+    var globalScore = window.sessionStorage.getItem('globalScore');
+
+    // Function to handle redirection based on user's choice
+    function handleRedirection(serious) {
+        if (serious) {
+            // If user chose to give feedback, use the stored values as needed
+            // For example, you can send them to a server, log them, etc.
+            console.log('User chose to give feedback. Global Score:', globalScore);
+            console.log('Percentages:', percentages);
+        }
+        // Redirect to results page
+        window.location.href = 'results.html';
+    }
 
     function pass(serious) {
         // Some simple validation
