@@ -135,7 +135,7 @@
             }
         }
         // Redirect to results page
-            location.href = ((window.location.hostname == "bahuwrihi.github.io/awakened-compass/") ? `feedback.html` : `results.html`) + `?global=${results.global}`;
+            location.href = ((window.location.hostname == "bahuwrihi.github.io" && window.location.pathname.startsWith("/awakened-compass/")) ? `feedback.html` : `results.html`) + `?global=${results.global}`;
         }
 
         // Calculate percentage
