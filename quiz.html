@@ -121,9 +121,12 @@
     // Calculate final results
     var pct = percentageCalculation();
 
-    // Store the results in sessionStorage
-    window.sessionStorage.setItem('percentages', JSON.stringify(pct.groups));
-    window.sessionStorage.setItem('globalScore', pct.global);
+    // Prepare arguments for URL
+    var args = '?';
+    for (const [key, value] of Object.entries(pct.groups)) {
+        args += `${key}=${value}&`;
+    }
+    args += `global=${pct.global}`;
 
         // prepare arguments
         var args = '?';
