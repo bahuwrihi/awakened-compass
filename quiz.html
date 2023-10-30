@@ -84,6 +84,7 @@
 
         // Next question
         function next_question(answer) {
+            console.log("Next question called. Current question number: ", qn);
             if (qn === questionsOrder.length) {
                 return;
             }
@@ -94,6 +95,7 @@
             if (qn < questionsOrder.length) {
                 init_question();
             } else {
+                console.log("Last question answered. Calling results function.");
                 results();
             }
         }
