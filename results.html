@@ -32,14 +32,15 @@
         <text x="50%" y="15" class="svgHeader">Results</text>
     </svg>
 
-    <img src="bahuwrihi.github.io/awakened-compass/compass.png" id="background" style="display:none;">
-    <canvas id="resultsCanvas" width="1850" height="1600"></canvas></br>
+    <img src="compass.png" id="background" style="display:none;">
+    <canvas id="resultsCanvas" width="1850" height="1600"></canvas>
+    <br>
     <p style="text-align:center;margin:-2px auto">Hint: you can download this image directly. No need to screenshot!</p></br>
     <button class="button" onclick="location.href='index.html';" style="background-color: #2196f3;">Back</button> <br>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const globalScore = parseFloat(urlParams.get("global")) || 0; // Default to 0 if not found
+        const globalScore = parseFloat(urlParams.get("global")) || 0; // Assuming you pass the global score in the URL
 
         // Define predefined positions for each group
         const predefinedPositions = {
@@ -58,53 +59,47 @@
     	M: [{x: 668, y: 556}, {x: 557, y: 415}, {x: 457, y: 290}],
     	N: [{x: 719, y: 531}, {x: 678, y: 357}, {x: 642, y: 200}]
     };
-
-    window.onload = function () {
+ window.onload = function () {
             const background = document.getElementById('background');
             const c = document.getElementById("resultsCanvas");
             const ctx = c.getContext("2d");
 
-            if (background) {
-                background.onload = function () {
-                    ctx.fillStyle = "#EEEEEE";
-                    ctx.fillRect(0, 0, c.width, c.height);
-                    ctx.drawImage(background, 0, 0);
+            background.onload = function () {
+                ctx.drawImage(background, 0, 0);
 
-                    // Draw the line for global score
-                    const x = (globalScore + 10) * (c.width / 20);
+                // Draw the line for global score
+                var x = (globalScore + 10) * (c.width / 20);
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, c.height);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = "red";
+                ctx.stroke();
+
+                // Draw dots for each group
+                for (const [group, positions] of Object.entries(predefinedPositions)) {
+                    const score = parseFloat(urlParams.get(group)) || 0; // Get the score for the group from URL parameters
+                    const third = Math.floor(score / (2 / 3));
+                    const position = positions[third];
+
                     ctx.beginPath();
-                    ctx.moveTo(x, 0);
-                    ctx.lineTo(x, c.height);
-                    ctx.lineWidth = 2;
-                    ctx.strokeStyle = "red";
+                    ctx.arc(position.x, position.y, 25, 0, 2 * Math.PI);
+                    ctx.fillStyle = 'red';
+                    ctx.fill();
                     ctx.stroke();
+                }
 
-                    // Draw dots for each group
-                    for (const [group, positions] of Object.entries(predefinedPositions)) {
-                        const score = parseFloat(urlParams.get(group)) || 0; // Default to 0 if not found
-                        const third = Math.floor(score / (2 / 3));
-                        const position = positions[third];
+                // Draw the text
+                ctx.font="50px Montserrat";
+                ctx.textAlign="center";
+                ctx.fillStyle="#222222";
+                ctx.fillText("Global Score: " + globalScore, 725, 1375);
+                ctx.textAlign="right";
+                ctx.font="60px Montserrat";
+                ctx.fillText("SapplyValues.github.io", 1820, 1560);
+            };
 
-                        ctx.beginPath();
-                        ctx.arc(position.x, position.y, 25, 0, 2 * Math.PI);
-                        ctx.fillStyle = 'red';
-                        ctx.fill();
-                        ctx.stroke();
-                    }
-
-                    // Draw the text
-                    ctx.font="50px Montserrat";
-                    ctx.textAlign="center";
-                    ctx.fillStyle="#222222";
-                    ctx.fillText("Global Score: " + globalScore, 725, 1375);
-                    ctx.textAlign="right";
-                    ctx.font="60px Montserrat";
-                    ctx.fillText("SapplyValues.github.io", 1820, 1560);
-                };
-                background.src = "bahuwrihi.github.io/awakened-compass/compass.png";
-            } else {
-                console.error("Background image element not found");
-            }
+            background.src = "compass.png";
         };
     </script>
 </body>
