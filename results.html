@@ -64,6 +64,9 @@
         var background = document.getElementById('background');  // Make sure this is the correct ID
 console.log("Background image element:", background);
 background.onload = function() {
+	if (results && results.global) {
+        var x = results.global.x;
+        var y = results.global.y;
             var c = document.createElement("canvas");
             c.width = 1850;
             c.height = 1600;
@@ -106,6 +109,9 @@ background.onload = function() {
 
             // Set the image source to the canvas data URL
             document.getElementById("banner").src = c.toDataURL();
+		} else {
+            console.error("Results global is undefined or not an object with expected properties");
+        }
         };
         background.src = "./compass.png";
     };
