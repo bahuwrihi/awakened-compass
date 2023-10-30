@@ -1,7 +1,5 @@
 questions = [
     //Valid questionTypes: customNumber, smallSelection, bigSelection, customText
-questions_feedback = [
-    // Feedback based on Expansive Awareness
     {
     "id": 1,
     "question": "How would you classify yourself as?",
@@ -37,19 +35,7 @@ questions_feedback = [
         "color": "#999999",
         "effect": null
         }]
-        "id": 1,
-        "question": "Your sense of Expansive Awareness",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Very High", "color": "#1b5e20", "effect": "HighEA"},
-            {"label": "High", "color": "#4caf50", "effect": "HighEA"},
-            {"label": "Moderate", "color": "#999999", "effect": "ModEA"},
-            {"label": "Low", "color": "#e57373", "effect": "LowEA"},
-            {"label": "Very Low", "color": "#d32f2f", "effect": "LowEA"},
-            {"label": "Don't Know / Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
-    // Feedback based on Focused Insight
     {
     "id": 2,
     "question": "How would you classify yourself as?",
@@ -85,19 +71,7 @@ questions_feedback = [
         "color": "#999999",
         "effect": null
         }]
-        "id": 2,
-        "question": "Your sense of Focused Insight",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Very High", "color": "#1b5e20", "effect": "HighFI"},
-            {"label": "High", "color": "#4caf50", "effect": "HighFI"},
-            {"label": "Moderate", "color": "#999999", "effect": "ModFI"},
-            {"label": "Low", "color": "#e57373", "effect": "LowFI"},
-            {"label": "Very Low", "color": "#d32f2f", "effect": "LowFI"},
-            {"label": "Don't Know / Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
-    // Feedback based on Stability of Awareness
     {
     "id": 3,
     "question": "How do you view yourself on Culture?",
@@ -143,19 +117,7 @@ questions_feedback = [
         "color": "#a9a9a9",
         "effect": null
         }]
-        "id": 3,
-        "question": "Your Stability of Awareness",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Very Stable", "color": "#1b5e20", "effect": "StableA"},
-            {"label": "Stable", "color": "#4caf50", "effect": "StableA"},
-            {"label": "Neutral", "color": "#999999", "effect": "NeutralA"},
-            {"label": "Variable", "color": "#e57373", "effect": "VariableA"},
-            {"label": "Very Variable", "color": "#d32f2f", "effect": "VariableA"},
-            {"label": "Don't Know / Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
-    // Feedback based on Variability of Awareness
     {
     "id": 4,
     "question": "How do you view yourself on Economics?",
@@ -201,19 +163,7 @@ questions_feedback = [
         "color": "#a9a9a9",
         "effect": null
         }]
-        "id": 4,
-        "question": "Your Variability of Awareness",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Very Variable", "color": "#1b5e20", "effect": "VariableA"},
-            {"label": "Variable", "color": "#4caf50", "effect": "VariableA"},
-            {"label": "Neutral", "color": "#999999", "effect": "NeutralA"},
-            {"label": "Stable", "color": "#e57373", "effect": "StableA"},
-            {"label": "Very Stable", "color": "#d32f2f", "effect": "StableA"},
-            {"label": "Don't Know / Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
-    // Demographic and Personal Characteristics
     {
     "id": 5,
     "question": "How do you view yourself on Authority?",
@@ -259,34 +209,11 @@ questions_feedback = [
         "color": "#a9a9a9",
         "effect": null
         }]
-        "id": 5,
-        "question": "Your Age Group",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "18-24", "color": "#4caf50", "effect": "YoungAdult"},
-            {"label": "25-34", "color": "#4caf50", "effect": "Adult"},
-            {"label": "35-44", "color": "#4caf50", "effect": "Adult"},
-            {"label": "45-54", "color": "#4caf50", "effect": "MiddleAged"},
-            {"label": "55-64", "color": "#4caf50", "effect": "MiddleAged"},
-            {"label": "65+", "color": "#4caf50", "effect": "Senior"},
-            {"label": "Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
     {
     "id": 6,
     "question": "What label would you give to your ideology?",
     "questionType": "customText"
-        "id": 6,
-        "question": "Your Occupation",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Student", "color": "#4caf50", "effect": "Student"},
-            {"label": "Working Professional", "color": "#4caf50", "effect": "Professional"},
-            {"label": "Self-Employed", "color": "#4caf50", "effect": "SelfEmployed"},
-            {"label": "Unemployed", "color": "#e57373", "effect": "Unemployed"},
-            {"label": "Retired", "color": "#4caf50", "effect": "Retired"},
-            {"label": "Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
     {
     "id": 7,
@@ -323,36 +250,13 @@ questions_feedback = [
         "color": "#999999",
         "effect": null
         }]
-        "id": 7,
-        "question": "Your Level of Physical Activity",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Very Active", "color": "#4caf50", "effect": "Active"},
-            {"label": "Active", "color": "#4caf50", "effect": "Active"},
-            {"label": "Moderately Active", "color": "#999999", "effect": "ModerateActivity"},
-            {"label": "Sedentary", "color": "#e57373", "effect": "Sedentary"},
-            {"label": "Very Sedentary", "color": "#d32f2f", "effect": "Sedentary"},
-            {"label": "Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
     {
     "id": 8,
     "question": "How old are you? (13-99)",
     "questionType": "customNumber",
     "range":[13,99]
-        "id": 8,
-        "question": "Your Dietary Habits",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Very Healthy", "color": "#4caf50", "effect": "HealthyDiet"},
-            {"label": "Healthy", "color": "#4caf50", "effect": "HealthyDiet"},
-            {"label": "Moderate", "color": "#999999", "effect": "ModerateDiet"},
-            {"label": "Unhealthy", "color": "#e57373", "effect": "UnhealthyDiet"},
-            {"label": "Very Unhealthy", "color": "#d32f2f", "effect": "UnhealthyDiet"},
-            {"label": "Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
-    // Additional Feedback Categories
     {
     "id": 9,
     "question": "Which religion do you adhere to?",
@@ -398,34 +302,12 @@ questions_feedback = [
         "color": "#999999",
         "effect": null
         }]
-        "id": 9,
-        "question": "Your Social Connections",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Very Connected", "color": "#4caf50", "effect": "Connected"},
-            {"label": "Connected", "color": "#4caf50", "effect": "Connected"},
-            {"label": "Moderately Connected", "color": "#999999", "effect": "ModerateConnection"},
-            {"label": "Isolated", "color": "#e57373", "effect": "Isolated"},
-            {"label": "Very Isolated", "color": "#d32f2f", "effect": "Isolated"},
-            {"label": "Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
     {
     "id": 10,
     "question": "Which country do you live in?",
     "questionType": "bigSelection",
     "answers": {"AF":"Afghanistan","AX":"\u00c5land Islands","AL":"Albania","DZ":"Algeria","AS":"American Samoa","AD":"Andorra","AO":"Angola","AI":"Anguilla","AQ":"Antarctica","AG":"Antigua & Barbuda","AR":"Argentina","AM":"Armenia","AW":"Aruba","AU":"Australia","AT":"Austria","AZ":"Azerbaijan","BS":"Bahamas","BH":"Bahrain","BD":"Bangladesh","BB":"Barbados","BY":"Belarus","BE":"Belgium","BZ":"Belize","BJ":"Benin","BM":"Bermuda","BT":"Bhutan","BO":"Bolivia","BA":"Bosnia & Herzegovina","BW":"Botswana","BV":"Bouvet Island","BR":"Brazil","IO":"British Indian Ocean Territory","VG":"British Virgin Islands","BN":"Brunei","BG":"Bulgaria","BF":"Burkina Faso","BI":"Burundi","KH":"Cambodia","CM":"Cameroon","CA":"Canada","CV":"Cape Verde","BQ":"Caribbean Netherlands","KY":"Cayman Islands","CF":"Central African Republic","TD":"Chad","CL":"Chile","CN":"China","CX":"Christmas Island","CC":"Cocos (Keeling) Islands","CO":"Colombia","KM":"Comoros","CG":"Congo - Brazzaville","CD":"Congo - Kinshasa","CK":"Cook Islands","CR":"Costa Rica","CI":"C\u00f4te d\u2019Ivoire","HR":"Croatia","CU":"Cuba","CW":"Cura\u00e7ao","CY":"Cyprus","CZ":"Czechia","DK":"Denmark","DJ":"Djibouti","DM":"Dominica","DO":"Dominican Republic","EC":"Ecuador","EG":"Egypt","SV":"El Salvador","GQ":"Equatorial Guinea","ER":"Eritrea","EE":"Estonia","SZ":"Eswatini","ET":"Ethiopia","FK":"Falkland Islands","FO":"Faroe Islands","FJ":"Fiji","FI":"Finland","FR":"France","GF":"French Guiana","PF":"French Polynesia","TF":"French Southern Territories","GA":"Gabon","GM":"Gambia","GE":"Georgia","DE":"Germany","GH":"Ghana","GI":"Gibraltar","GR":"Greece","GL":"Greenland","GD":"Grenada","GP":"Guadeloupe","GU":"Guam","GT":"Guatemala","GG":"Guernsey","GN":"Guinea","GW":"Guinea-Bissau","GY":"Guyana","HT":"Haiti","HM":"Heard & McDonald Islands","HN":"Honduras","HK":"Hong Kong SAR China","HU":"Hungary","IS":"Iceland","IN":"India","ID":"Indonesia","IR":"Iran","IQ":"Iraq","IE":"Ireland","IM":"Isle of Man","IL":"Israel","IT":"Italy","JM":"Jamaica","JP":"Japan","JE":"Jersey","JO":"Jordan","KZ":"Kazakhstan","KE":"Kenya","KI":"Kiribati","KW":"Kuwait","KG":"Kyrgyzstan","LA":"Laos","LV":"Latvia","LB":"Lebanon","LS":"Lesotho","LR":"Liberia","LY":"Libya","LI":"Liechtenstein","LT":"Lithuania","LU":"Luxembourg","MO":"Macao SAR China","MG":"Madagascar","MW":"Malawi","MY":"Malaysia","MV":"Maldives","ML":"Mali","MT":"Malta","MH":"Marshall Islands","MQ":"Martinique","MR":"Mauritania","MU":"Mauritius","YT":"Mayotte","MX":"Mexico","FM":"Micronesia","MD":"Moldova","MC":"Monaco","MN":"Mongolia","ME":"Montenegro","MS":"Montserrat","MA":"Morocco","MZ":"Mozambique","MM":"Myanmar (Burma)","NA":"Namibia","NR":"Nauru","NP":"Nepal","NL":"Netherlands","NC":"New Caledonia","NZ":"New Zealand","NI":"Nicaragua","NE":"Niger","NG":"Nigeria","NU":"Niue","NF":"Norfolk Island","KP":"North Korea","MK":"North Macedonia","MP":"Northern Mariana Islands","NO":"Norway","OM":"Oman","PK":"Pakistan","PW":"Palau","PS":"Palestinian Territories","PA":"Panama","PG":"Papua New Guinea","PY":"Paraguay","PE":"Peru","PH":"Philippines","PN":"Pitcairn Islands","PL":"Poland","PT":"Portugal","PR":"Puerto Rico","QA":"Qatar","RE":"R\u00e9union","RO":"Romania","RU":"Russia","RW":"Rwanda","WS":"Samoa","SM":"San Marino","ST":"S\u00e3o Tom\u00e9 & Pr\u00edncipe","SA":"Saudi Arabia","SN":"Senegal","RS":"Serbia","SC":"Seychelles","SL":"Sierra Leone","SG":"Singapore","SX":"Sint Maarten","SK":"Slovakia","SI":"Slovenia","SB":"Solomon Islands","SO":"Somalia","ZA":"South Africa","GS":"South Georgia & South Sandwich Islands","KR":"South Korea","SS":"South Sudan","ES":"Spain","LK":"Sri Lanka","BL":"St. Barth\u00e9lemy","SH":"St. Helena","KN":"St. Kitts & Nevis","LC":"St. Lucia","MF":"St. Martin","PM":"St. Pierre & Miquelon","VC":"St. Vincent & Grenadines","SD":"Sudan","SR":"Suriname","SJ":"Svalbard & Jan Mayen","SE":"Sweden","CH":"Switzerland","SY":"Syria","TW":"Taiwan","TJ":"Tajikistan","TZ":"Tanzania","TH":"Thailand","TL":"Timor-Leste","TG":"Togo","TK":"Tokelau","TO":"Tonga","TT":"Trinidad & Tobago","TN":"Tunisia","TR":"Turkey","TM":"Turkmenistan","TC":"Turks & Caicos Islands","TV":"Tuvalu","UM":"U.S. Outlying Islands","VI":"U.S. Virgin Islands","UG":"Uganda","UA":"Ukraine","AE":"United Arab Emirates","GB":"United Kingdom","US":"United States","UY":"Uruguay","UZ":"Uzbekistan","VU":"Vanuatu","VA":"Vatican City","VE":"Venezuela","VN":"Vietnam","WF":"Wallis & Futuna","EH":"Western Sahara","YE":"Yemen","ZM":"Zambia","ZW":"Zimbabwe"}
-        "id": 10,
-        "question": "Your Mental Well-being",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Very Good", "color": "#4caf50", "effect": "GoodMentalWellbeing"},
-            {"label": "Good", "color": "#4caf50", "effect": "GoodMentalWellbeing"},
-            {"label": "Moderate", "color": "#999999", "effect": "ModerateMentalWellbeing"},
-            {"label": "Poor", "color": "#e57373", "effect": "PoorMentalWellbeing"},
-            {"label": "Very Poor", "color": "#d32f2f", "effect": "PoorMentalWellbeing"},
-            {"label": "Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
     {
     "id": 11,
@@ -462,17 +344,6 @@ questions_feedback = [
         "color": "#a9a9a9",
         "effect": null
         }]
-        "id": 11,
-        "question": "Your Sleep Quality",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Very Good", "color": "#4caf50", "effect": "GoodSleep"},
-            {"label": "Good", "color": "#4caf50", "effect": "GoodSleep"},
-            {"label": "Moderate", "color": "#999999", "effect": "ModerateSleep"},
-            {"label": "Poor", "color": "#e57373", "effect": "PoorSleep"},
-            {"label": "Very Poor", "color": "#d32f2f", "effect": "PoorSleep"},
-            {"label": "Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
     },
     {
     "id": 12,
@@ -609,16 +480,3 @@ questions_feedback = [
         }]
     },
 ]
-        "id": 12,
-        "question": "Your Stress Levels",
-        "questionType": "smallSelection",
-        "answers": [
-            {"label": "Very Low", "color": "#4caf50", "effect": "LowStress"},
-            {"label": "Low", "color": "#4caf50", "effect": "LowStress"},
-            {"label": "Moderate", "color": "#999999", "effect": "ModerateStress"},
-            {"label": "High", "color": "#e57373", "effect": "HighStress"},
-            {"label": "Very High", "color": "#d32f2f", "effect": "HighStress"},
-            {"label": "Prefer Not to Say", "color": "#a9a9a9", "effect": null}
-        ]
-    }
-];
