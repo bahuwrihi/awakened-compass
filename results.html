@@ -61,8 +61,9 @@
     };
 
     window.onload = function() {
-        var background = new Image();
-        background.onload = function() {
+        var background = document.getElementById('background');  // Make sure this is the correct ID
+console.log("Background image element:", background);
+background.onload = function() {
             var c = document.createElement("canvas");
             c.width = 1850;
             c.height = 1600;
