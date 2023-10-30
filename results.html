@@ -32,7 +32,7 @@
         <text x="50%" y="15" class="svgHeader">Results</text>
     </svg>
 
-    <img src="path_to_your_compass_image.png" id="background" style="display:none;">
+    <img src="./compass.png" id="background" style="display:none;">
     <canvas id="resultsCanvas" width="1850" height="1600"></canvas></br>
     <p style="text-align:center;margin:-2px auto">Hint: you can download this image directly. No need to screenshot!</p></br>
     <button class="button" onclick="location.href='index.html';" style="background-color: #2196f3;">Back</button> <br>
@@ -101,7 +101,7 @@
                     ctx.font="60px Montserrat";
                     ctx.fillText("SapplyValues.github.io", 1820, 1560);
                 };
-                background.src = "path_to_your_compass_image.png";
+                background.src = "./compass.png";
             } else {
                 console.error("Background image element not found");
             }
