@@ -120,6 +120,7 @@
 
     // Calculate final results
     var pct = percentageCalculation();
+var redirectionUrl = ((window.location.hostname == "bahuwrihi.github.io" && window.location.pathname.startsWith("/awakened-compass/")) ? 'feedback.html' : 'results.html');
 
     // Prepare arguments for URL
     var args = '?';
@@ -127,6 +128,8 @@
         args += `${key}=${value}&`;
     }
     args += `global=${pct.global}`;
+            location.href = redirectionUrl + args;
+
 
         // prepare arguments
         var args = '?';
@@ -139,9 +142,7 @@
                 args += '&'
             }
         }
-        // Redirect to results page
- var redirectionUrl = ((window.location.hostname == "bahuwrihi.github.io" && window.location.pathname.startsWith("/awakened-compass/")) ? 'feedback.html' : 'results.html');
-    location.href = redirectionUrl + `?global=${pct.global}`;
+        
         }
 
         // Calculate percentage
