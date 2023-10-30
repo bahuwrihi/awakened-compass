@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QV3YKGRPCD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-QV3YKGRPCD');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QV3YKGRPCD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-QV3YKGRPCD');
+    </script>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:400,700" rel="stylesheet">
     <link href='style.css' rel='stylesheet' type='text/css'>
@@ -17,33 +16,32 @@
     <link rel="icon" type="x-icon" href="icon.png">
     <link rel="shortcut icon" type="x-icon" href="icon.png">
     <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    
-    <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
     <h1 class="title">SapplyValues</h1>
     <svg id="svgHeader" style="width: 100%;" viewBox="0 0 112 19">
         <text x="50%" y="15" class="svgHeader">SapplyValues</text>
     </svg>
     <hr>
-    
-	<h1 class="title">Results</h1></br>
+
+    <h1 class="title">Results</h1></br>
     <p style="text-align:center;margin:-2px auto">If you like this site, <a href="https://ko-fi.com/sunkdatadiver">consider chucking me a few bucks</a> :)))</p></br>
     <svg id="svgHeader" style="width: 100%;" viewBox="0 0 112 19">
-		<text x="50%" y="15" class="svgHeader">Results</text>
-	</svg>
-    
+        <text x="50%" y="15" class="svgHeader">Results</text>
+    </svg>
+
     <img src="" id="banner"></br>
     <p style="text-align:center;margin:-2px auto">Hint: you can download this image directly. No need to screenshot!</p></br>
     <button class="button" onclick="location.href='index.html';" style="background-color: #2196f3;">Back</button> <br>
-	
-<img src="./compass.png" id="background" style="display:none;">
-   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const globalScore = parseFloat(urlParams.get("global")); // Assuming you pass the global score in the URL
 
-    // Define predefined positions for each group
-    const predefinedPositions = {
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const globalScore = parseFloat(urlParams.get("global")); // Assuming you pass the global score in the URL
+
+        // Define predefined positions for each group
+        const predefinedPositions = {
         A: [{x: 775, y: 531}, {x: 814, y: 357}, {x: 850, y: 200}],
     	B: [{x: 825, y: 556}, {x: 937, y: 414}, {x: 1037, y: 290}],
    	C: [{x: 859, y: 598}, {x: 1022, y: 521}, {x: 1166, y: 451}],
@@ -60,46 +58,41 @@
     	N: [{x: 719, y: 531}, {x: 678, y: 357}, {x: 642, y: 200}]
     };
 
-    window.onload = function() {
-        var background = document.getElementById('background');  // Make sure this is the correct ID
-if (!background) {
-        console.error("Background image element not found");
-        return;
-    }
-background.onload = function() {
-	if (results && results.global) {
-        var x = results.global.x;
-        var y = results.global.y;
-            var c = document.createElement("canvas");
-            c.width = 1850;
-            c.height = 1600;
-            var ctx = c.getContext("2d");
-            ctx.fillStyle = "#EEEEEE";
-            ctx.fillRect(0, 0, 1850, 1600);
-            ctx.drawImage(background, 0, 0);
+    window.onload = function () {
+            var background = document.getElementById('background');
+            if (background) {
+                background.onload = function () {
+                    var c = document.createElement("canvas");
+                    c.width = 1850;
+                    c.height = 1600;
+                    var ctx = c.getContext("2d");
+                    ctx.fillStyle = "#EEEEEE";
+                    ctx.fillRect(0, 0, 1850, 1600);
+                    ctx.drawImage(background, 0, 0);
 
-            // Draw dots for each group
-            for (const [group, positions] of Object.entries(predefinedPositions)) {
-                const score = parseFloat(urlParams.get(group)); // Get the score for the group from URL parameters
-                const third = Math.floor(score / (2 / 3));
-                const position = positions[third];
+                    // Draw the line for global score
+                    var x = (globalScore + 10) * (c.width / 20);
+                    var line = c.getContext("2d");
+                    line.beginPath();
+                    line.moveTo(x, 0);
+                    line.lineTo(x, c.height);
+                    line.lineWidth = 2;
+                    line.strokeStyle = "red";
+                    line.stroke();
 
-                var dot = c.getContext("2d");
-                dot.beginPath();
-                dot.arc(position.x, position.y, 25, 0, 2 * Math.PI);
-                dot.fillStyle = 'red';
-                dot.fill();
-                dot.stroke();
-            }
+                    // Draw dots for each group
+                    for (const [group, positions] of Object.entries(predefinedPositions)) {
+                        const score = parseFloat(urlParams.get(group)); // Get the score for the group from URL parameters
+                        const third = Math.floor(score / (2 / 3));
+                        const position = positions[third];
 
-            // Draw the line for global score
-            var line = c.getContext("2d");
-            line.beginPath();
-            line.moveTo(1500, 1145 - (1000 * (globalScore + 10)/20));
-            line.lineTo(1650, 1145 - (1000 * (globalScore + 10)/20));
-            line.lineWidth = 10;
-            line.strokeStyle = "red";
-            line.stroke();
+                        var dot = c.getContext("2d");
+                        dot.beginPath();
+                        dot.arc(position.x, position.y, 25, 0, 2 * Math.PI);
+                        dot.fillStyle = 'red';
+                        dot.fill();
+                        dot.stroke();
+                    }
 
             // Draw the text
             ctx.font="50px Montserrat";
@@ -111,14 +104,13 @@ background.onload = function() {
             ctx.fillText("SapplyValues.github.io", 1820, 1560);
 
             // Set the image source to the canvas data URL
-            document.getElementById("banner").src = c.toDataURL();
-		} else {
-            console.error("Results global is undefined or not an object with expected properties");
-        }
+                    document.getElementById("banner").src = c.toDataURL();
+                };
+                background.src = "./compass.png";
+            } else {
+                console.error("Background image element not found");
+            }
         };
-        background.src = background.src;
-    };
-</script>
-
-    </body>
-    
+    </script>
+</body>
+</html>
