@@ -5,7 +5,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'UA-99715444-7');
     </script>
 
@@ -18,124 +17,106 @@
     <link rel="shortcut icon" type="x-icon" href="icon.png">
 
     <script type="application/javascript" src="questions.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-
-	<h1 class="title">SapplyValues</h1>
+    <h1 class="title">SapplyValues</h1>
     <svg id="svgHeader" style="width: 100%;" viewBox="0 0 112 19">
-		<text x="50%" y="15" class="svgHeader">SapplyValues</text>
-	</svg>
-<hr>
-<h2 style="text-align:center;" id="question-number">Loading...</h2>
-<p class="question" id="question-text"></p>
-<button class="button" onclick="next_question(2)" style="background-color: #1b5e20;">Strongly Agree</button> <br>
-<button class="button" onclick="next_question(1)" style="background-color: #4caf50;">Agree</button> <br>
-<button class="button" onclick="next_question(0)" style="background-color: #bbbbbb;">Neutral / Unsure</button> <br>
-<button class="button" onclick="next_question(-1)" style="background-color: #f44336;">Disagree</button> <br>
-<button class="button" onclick="next_question(-2)" style="background-color: #b71c1c;">Strongly Disagree</button> <br>
-<button class="small_button" onclick="prev_question()" id="back_button">Back</button>
-<button class="small_button_off" id="back_button_off">Back</button><br>
+        <text x="50%" y="15" class="svgHeader">SapplyValues</text>
+    </svg>
+    <hr>
+    <h2 style="text-align:center;" id="question-number">Loading...</h2>
+    <p class="question" id="question-text"></p>
+    <button class="button" onclick="next_question(2)" style="background-color: #1b5e20;">Strongly Agree</button> <br>
+    <button class="button" onclick="next_question(1)" style="background-color: #4caf50;">Agree</button> <br>
+    <button class="button" onclick="next_question(0)" style="background-color: #bbbbbb;">Neutral / Unsure</button> <br>
+    <button class="button" onclick="next_question(-1)" style="background-color: #f44336;">Disagree</button> <br>
+    <button class="button" onclick="next_question(-2)" style="background-color: #b71c1c;">Strongly Disagree</button> <br>
+    <button class="small_button" onclick="prev_question()" id="back_button">Back</button>
+    <button class="small_button_off" id="back_button_off">Back</button><br>
 
-<script>
-    // variables
-    var answers = new Object();     // Store user's answers
-    var qn = 0; // Current question order
+    <script>
+        // variables
+        var answers = new Object();     // Store user's answers
+        var qn = 0; // Current question order
 
+        // Populate questionsObject
+        var questionsObject = new Object();     // Question objects with ID keys
+        questions.forEach(populateQO);
 
-    // Populate questionsObject
-
-    var questionsObject = new Object();     // Question objects with ID keys
-    questions.forEach(populateQO);
-
-    function populateQO(value) {
-      questionsObject[value['id']] = value
-    }
-
-
-    // Populate & shuffle questionsOrder
-
-    var questionsOrder = Object.keys(questionsObject); //Array of shuffled question IDs
-
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("shuffle") == "true") {
-        shuffleArray(questionsOrder);
-    }
-
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
-
-    // Question initialization
-
-    init_question();
-
-    function init_question() {
-        $("#question-text").html(questionsObject[questionsOrder[qn]].question);
-        $("#question-number").html("Question "+(qn + 1)+" of "+(questionsOrder.length));
-
-
-
-        if (jQuery.isEmptyObject(answers)) {
-            $('#back_button').hide()
-            $('#back_button_off').show()
-        } else {
-            $('#back_button').show()
-            $('#back_button_off').hide()
-        }
-    }
-
-
-    // Next question
-
-    function next_question(answer) {
-        if (qn === questionsOrder.length) {
-            return;
+        function populateQO(value) {
+            questionsObject[value['id']] = value
         }
 
-        answers[questionsOrder[qn]] = answer;
-        qn++;
-
-        if (qn < questionsOrder.length) {
-            init_question();
-        } else {
-            results();
+        // Populate & shuffle questionsOrder
+        var questionsOrder = Object.keys(questionsObject); //Array of shuffled question IDs
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("shuffle") == "true") {
+            shuffleArray(questionsOrder);
         }
-    }
 
-
-    // Previous question
-
-    function prev_question() {
-        if (jQuery.isEmptyObject(answers)) {
-            $('#back_button').hide()
-            $('#back_button_off').show()
-            return;
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
         }
-        qn--;
 
-        delete answers[questionsOrder[qn]];
-
+        // Question initialization
         init_question();
-    }
 
+        function init_question() {
+            $("#question-text").html(questionsObject[questionsOrder[qn]].question);
+            $("#question-number").html("Question " + (qn + 1) + " of " + (questionsOrder.length));
 
-    // RESULTS
+            if (jQuery.isEmptyObject(answers)) {
+                $('#back_button').hide()
+                $('#back_button_off').show()
+            } else {
+                $('#back_button').show()
+                $('#back_button_off').hide()
+            }
+        }
 
-    function results() {
+        // Next question
+        function next_question(answer) {
+            if (qn === questionsOrder.length) {
+                return;
+            }
 
-        window.sessionStorage.answers = JSON.stringify(answers);
+            answers[questionsOrder[qn]] = answer;
+            qn++;
 
+            if (qn < questionsOrder.length) {
+                init_question();
+            } else {
+                results();
+            }
+        }
 
-        // Calculate final results
-        pct = percentageCalculation();
-        window.sessionStorage.percentages = JSON.stringify(pct);
+        // Previous question
+        function prev_question() {
+            if (jQuery.isEmptyObject(answers)) {
+                $('#back_button').hide()
+                $('#back_button_off').show()
+                return;
+            }
+            qn--;
+
+            delete answers[questionsOrder[qn]];
+            init_question();
+        }
+
+        // RESULTS
+        function results() {
+            window.sessionStorage.answers = JSON.stringify(answers);
+
+            // Calculate final results
+            const results = percentageCalculation();
+            window.sessionStorage.percentages = JSON.stringify(results.groups);
+            window.sessionStorage.globalScore = results.global;
 
         // prepare arguments
         var args = '?';
@@ -148,46 +129,41 @@
                 args += '&'
             }
         }
-        //return;
-        location.href = ((window.location.hostname == "sapplyvalues.github.io") ? `feedback.html` : `results.html`) + args
-
-    }
-
-
-    // Calculate percentage
-
-    function percentageCalculation() {
-    var groupScores = new Object(); // Scores for each group
-    var globalScore = 0; // Total score across all questions
-    var normalizedGroupScores = new Object(); // Normalized scores for each group
-    var normalizedGlobalScore; // Normalized total score
-
-    // Initialize groupScores object
-    for (const group of Object.keys(questionsObject[0].effects)) {
-        groupScores[group] = 0;
-    }
-
-    // Calculate group scores and global score
-    for (const id in answers) {
-        if (answers[id] !== null) {
-            for (const group in questionsObject[id].effects) {
-                groupScores[group] += answers[id] * questionsObject[id].effects[group];
-                globalScore += answers[id] * questionsObject[id].effects[group];
-            }
+        // Redirect to results page
+            location.href = ((window.location.hostname == "bahuwrihi.github.io") ? `feedback.html` : `results.html`) + `?global=${results.global}`;
         }
-    }
 
-    // Normalize group scores to range 0 to 2
-    for (const group in groupScores) {
-        normalizedGroupScores[group] = ((groupScores[group] + 6) / 12).toFixed(2);
-    }
+        // Calculate percentage
+        function percentageCalculation() {
+            var groupScores = new Object(); // Scores for each group
+            var globalScore = 0; // Total score across all questions
+            var normalizedGroupScores = new Object(); // Normalized scores for each group
+            var normalizedGlobalScore; // Normalized total score
 
-    // Normalize global score to range -10 to 10
-    normalizedGlobalScore = ((globalScore / 84) * 10).toFixed(2);
+            // Initialize groupScores object
+            for (const group of Object.keys(questionsObject[0].effects)) {
+                groupScores[group] = 0;
+            }
 
-    return { groups: normalizedGroupScores, global: normalizedGlobalScore };
-}
-    }
-</script>
+            // Calculate group scores and global score
+            for (const id in answers) {
+                if (answers[id] !== null) {
+                    for (const group in questionsObject[id].effects) {
+                        groupScores[group] += answers[id] * questionsObject[id].effects[group];
+                        globalScore += answers[id] * questionsObject[id].effects[group];
+                    }
+                }
+            }
 
+            // Normalize group scores to range 0 to 2
+            for (const group in groupScores) {
+                normalizedGroupScores[group] = ((groupScores[group] + 6) / 12).toFixed(2);
+            }
+
+            // Normalize global score to range -10 to 10
+            normalizedGlobalScore = ((globalScore / 84) * 10).toFixed(2);
+
+            return { groups: normalizedGroupScores, global: normalizedGlobalScore };
+        }
+    </script>
 </body>
