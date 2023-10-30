@@ -119,7 +119,7 @@
             window.sessionStorage.answers = JSON.stringify(answers);
 
             // Calculate final results
-            const results = percentageCalculation();
+            var pct = percentageCalculation();
             window.sessionStorage.percentages = JSON.stringify(results.groups);
             window.sessionStorage.globalScore = results.global;
 
