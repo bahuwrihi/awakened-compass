@@ -36,52 +36,65 @@
     <button class="button" onclick="location.href='index.html';" style="background-color: #2196f3;">Back</button> <br>
 	
     
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        x_axis  = parseFloat(urlParams.get("right"))
-        y_axis  = parseFloat(urlParams.get("auth"))
-        z_axis  = parseFloat(urlParams.get("prog"))
-    
-        window.onload = function() {
-            var background = new Image();
-            background.onload = function() {
-                var c = document.createElement("canvas");
-                c.width = 1850;
-                c.height = 1600;
-                var ctx = c.getContext("2d");
-                ctx.fillStyle = "#EEEEEE"
-                ctx.fillRect(0, 0, 1850, 1600);
-                ctx.drawImage(background, 0, 0);
-    
+   <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const globalScore = parseFloat(urlParams.get("global")); // Assuming you pass the global score in the URL
+
+    // Define predefined positions for each group
+    const predefinedPositions = {
+        group1: [{x: 100, y: 200}, {x: 150, y: 250}, {x: 200, y: 300}],
+        // Add other groups here
+    };
+
+    window.onload = function() {
+        var background = new Image();
+        background.onload = function() {
+            var c = document.createElement("canvas");
+            c.width = 1850;
+            c.height = 1600;
+            var ctx = c.getContext("2d");
+            ctx.fillStyle = "#EEEEEE";
+            ctx.fillRect(0, 0, 1850, 1600);
+            ctx.drawImage(background, 0, 0);
+
+            // Draw dots for each group
+            for (const [group, positions] of Object.entries(predefinedPositions)) {
+                const score = parseFloat(urlParams.get(group)); // Get the score for the group from URL parameters
+                const third = Math.floor(score / (2 / 3));
+                const position = positions[third];
+
                 var dot = c.getContext("2d");
                 dot.beginPath();
-                dot.arc(200 + (1000 * (x_axis+10)/20), 1150 - (1000 * (y_axis + 10)/20), 25, 0, 2 * Math.PI);
+                dot.arc(position.x, position.y, 25, 0, 2 * Math.PI);
                 dot.fillStyle = 'red';
                 dot.fill();
                 dot.stroke();
-    
-                var line = c.getContext("2d");
-                line.beginPath();
-                line.moveTo(1500, 1145 - (1000 * (z_axis + 10)/20));
-                line.lineTo(1650, 1145 - (1000 * (z_axis + 10)/20));
-                line.lineWidth = 10;
-                line.strokeStyle = "red";
-                line.stroke();
-    
-                ctx.font="50px Montserrat"
-                ctx.textAlign="center"
-                ctx.fillStyle="#222222"
-                ctx.fillText("Left / Right Axis (x): " + x_axis, 725, 1375)
-                ctx.fillText("Auth / Lib Axis (y): " + y_axis, 725, 1450)
-                ctx.fillText("Prog / Con Axis (z): " + z_axis, 725, 1525)
-                ctx.textAlign="right"
-                ctx.font="60px Montserrat"
-                ctx.fillText("SapplyValues.github.io", 1820, 1560)
-    
-                document.getElementById("banner").src = c.toDataURL();
             }
-            background.src = "./compass.png";
-        }
-        </script>
+
+            // Draw the line for global score
+            var line = c.getContext("2d");
+            line.beginPath();
+            line.moveTo(1500, 1145 - (1000 * (globalScore + 10)/20));
+            line.lineTo(1650, 1145 - (1000 * (globalScore + 10)/20));
+            line.lineWidth = 10;
+            line.strokeStyle = "red";
+            line.stroke();
+
+            // Draw the text
+            ctx.font="50px Montserrat";
+            ctx.textAlign="center";
+            ctx.fillStyle="#222222";
+            ctx.fillText("Global Score: " + globalScore, 725, 1375);
+            ctx.textAlign="right";
+            ctx.font="60px Montserrat";
+            ctx.fillText("SapplyValues.github.io", 1820, 1560);
+
+            // Set the image source to the canvas data URL
+            document.getElementById("banner").src = c.toDataURL();
+        };
+        background.src = "./compass.png";
+    };
+</script>
+
     </body>
     
