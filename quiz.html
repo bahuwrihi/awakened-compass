@@ -157,43 +157,36 @@
     // Calculate percentage
 
     function percentageCalculation() {
-        // calc max
-        var max = new Object(); // Max possible scores
-        var score = new Object(); // User scores
-        var pct = new Object(); // Percentages/Score
+    var groupScores = new Object(); // Scores for each group
+    var globalScore = 0; // Total score across all questions
+    var normalizedGroupScores = new Object(); // Normalized scores for each group
+    var normalizedGlobalScore; // Normalized total score
 
-        // prepare
-        for (const id in answers) {
-            for (const effectName in questionsObject[id].effects) {
-                max[effectName] = 0
-                score[effectName] = 0
+    // Initialize groupScores object
+    for (const group of Object.keys(questionsObject[0].effects)) {
+        groupScores[group] = 0;
+    }
+
+    // Calculate group scores and global score
+    for (const id in answers) {
+        if (answers[id] !== null) {
+            for (const group in questionsObject[id].effects) {
+                groupScores[group] += answers[id] * questionsObject[id].effects[group];
+                globalScore += answers[id] * questionsObject[id].effects[group];
             }
         }
+    }
 
-        // get max & scores
-        for (const id in answers) {
-            // dismiss "don't know"
-            if (answers[id] !== null) {
-                for (const effectName in questionsObject[id].effects) {
-                    max[effectName] += Math.abs(questionsObject[id].effects[effectName]);
-                    score[effectName] += answers[id]*questionsObject[id].effects[effectName];
-                }
-            }
-        }
+    // Normalize group scores to range 0 to 2
+    for (const group in groupScores) {
+        normalizedGroupScores[group] = ((groupScores[group] + 6) / 12).toFixed(2);
+    }
 
-        // calc score
+    // Normalize global score to range -10 to 10
+    normalizedGlobalScore = ((globalScore / 84) * 10).toFixed(2);
 
-        for (const i in Object.keys(max)) {
-            effectName = Object.keys(max)[i]
-
-            if (max[effectName] > 0) {
-                pct[effectName] = (Math.round((score[effectName]*10/max[effectName]) * 100) / 100).toFixed(2);
-            } else {
-                pct[effectName] = 0
-            }
-        }
-
-        return pct;
+    return { groups: normalizedGroupScores, global: normalizedGlobalScore };
+}
     }
 </script>
 
