@@ -37,7 +37,7 @@
     <p style="text-align:center;margin:-2px auto">Hint: you can download this image directly. No need to screenshot!</p></br>
     <button class="button" onclick="location.href='index.html';" style="background-color: #2196f3;">Back</button> <br>
 	
-    
+<img src="./compass.png" id="background" style="display:none;">
    <script>
     const urlParams = new URLSearchParams(window.location.search);
     const globalScore = parseFloat(urlParams.get("global")); // Assuming you pass the global score in the URL
@@ -62,7 +62,10 @@
 
     window.onload = function() {
         var background = document.getElementById('background');  // Make sure this is the correct ID
-console.log("Background image element:", background);
+if (!background) {
+        console.error("Background image element not found");
+        return;
+    }
 background.onload = function() {
 	if (results && results.global) {
         var x = results.global.x;
@@ -113,7 +116,7 @@ background.onload = function() {
             console.error("Results global is undefined or not an object with expected properties");
         }
         };
-        background.src = "./compass.png";
+        background.src = background.src;
     };
 </script>
 
