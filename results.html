@@ -32,7 +32,6 @@
         <text x="50%" y="15" class="svgHeader">Results</text>
     </svg>
 
-<img src="https://bahuwrihi.github.io/awakened-compass/compass.png" id="background" style="display:none;">
     <canvas id="resultsCanvas" width="1850" height="1600"></canvas>
     <br>
     <p style="text-align:center;margin:-2px auto">Hint: you can download this image directly. No need to screenshot!</p></br>
@@ -60,18 +59,18 @@
     	N: [{x: 719, y: 531}, {x: 678, y: 357}, {x: 642, y: 200}]
     };
  window.onload = function () {
-            const background = document.getElementById('background');
             const c = document.getElementById("resultsCanvas");
             const ctx = c.getContext("2d");
+            const background = new Image();
 
             background.onload = function () {
-                ctx.drawImage(background, 0, 0);
+                ctx.drawImage(background, 0, 0, 1850, 1600);
 
                 // Draw the line for global score
-                var x = (globalScore + 10) * (c.width / 20);
+                var x = 200 + (1000 * (globalScore + 10) / 20);
                 ctx.beginPath();
                 ctx.moveTo(x, 0);
-                ctx.lineTo(x, c.height);
+                ctx.lineTo(x, 1600);
                 ctx.lineWidth = 2;
                 ctx.strokeStyle = "red";
                 ctx.stroke();
@@ -90,16 +89,16 @@
                 }
 
                 // Draw the text
-                ctx.font="50px Montserrat";
-                ctx.textAlign="center";
-                ctx.fillStyle="#222222";
+                ctx.font = "50px Montserrat";
+                ctx.textAlign = "center";
+                ctx.fillStyle = "#222222";
                 ctx.fillText("Global Score: " + globalScore, 725, 1375);
-                ctx.textAlign="right";
-                ctx.font="60px Montserrat";
+                ctx.textAlign = "right";
+                ctx.font = "60px Montserrat";
                 ctx.fillText("SapplyValues.github.io", 1820, 1560);
             };
 
-background.src = "https://bahuwrihi.github.io/awakened-compass/compass.png";
+            background.src = "https://bahuwrihi.github.io/awakened-compass/compass.png";
         };
     </script>
 </body>
