@@ -110,7 +110,7 @@
                 args += `${group.toLowerCase()}=${pct.groups[group]}&`;
             }
             args += `global=${pct.global}`;
-            location.href = redirectionUrl + args;
+            location.href = ((redirectionUrl) ? `feedback.html` : `results.html`) + args
         }
 
         // Calculate percentage
