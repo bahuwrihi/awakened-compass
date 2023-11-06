@@ -264,3 +264,109 @@ span.weight-300 {
 		font-size: 1.75em;
     }
 }
+
+.line-fill {
+    height: 100%; /* Fills the entire height of the graph */
+    position: relative;
+    border-radius: 16px;
+}
+
+.line {
+    height: 10px; /* Adjust the height as needed */
+}
+
+/* Define line colors for each group */
+.group-label {
+    text-align: left; /* Align group names to the left */
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.label {
+    text-align: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+/* Define a grid layout for the group containers */
+.group-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-content: flex-start;
+    margin-top: 35px;
+}
+
+/* Adjust the styles for the group containers */
+.group-container {
+    text-align: center;
+    background-color: #eeeeee;
+    border-radius: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 14pt;
+}
+
+.group-label {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.group-graph {
+    height: 30px; /* Adjust the height as needed */
+}
+
+.point-graph {
+    flex-grow: 1;
+    align-items: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+/* Styles for the global graph points */
+.global-point {
+    width: 3px; /* Adjust the width of global points */
+    height: 30px; /* Adjust the height of global points */
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+/* Add styles for the global graph */
+.global-graph {
+    align-items: center;
+    height: 40px; /* Adjust the height as needed */
+    position: relative; /* Add relative positioning for label positioning */
+}
+
+/* Styles for the labels in the global graph */
+.global-label {
+    position: absolute;
+    text-align: center;
+    width: 20px; /* Adjust the width of the labels */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px; /* Adjust the font size for the labels */
+    color: #333333;
+    bottom: 0;
+    top: 35px;
+    font-weight: bold;
+}
+
+/* Adjust the position of each label as needed */
+.global-label:nth-child(1) {
+    left: 0%; /* Position of Label 1 */
+}
+
+.global-label:nth-child(2) {
+    left: 30%; /* Position of Label 2 */
+}
+
+.global-label:nth-child(3) {
+    left: 60%; /* Position of Label 3 */
+}
+
+.global-label:nth-child(4) {
+    left: 90%; /* Position of Label 4 */
+}
+
+.global-score{
+    color:#dddddd;
+}

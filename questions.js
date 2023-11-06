@@ -1,12 +1,12 @@
 const questions = [
   // Group A
-  {"id": 0, "question": "I connect “awakening” with a consciousness journey beyond any specific deity.", "group": "A", "negativeFraming": false, "globalEffect": 1},
+  {"id": 0, "question": "I connect awakening with a consciousness journey beyond any specific deity.", "group": "A", "negativeFraming": false, "globalEffect": 1},
   {"id": 1, "question": "I strive to see the world free from the limitations of personal and societal belief systems.", "group": "A", "negativeFraming": false, "globalEffect": 1},
   {"id": 2, "question": "In my view, everything in the universe is some form of manifestation of consciousness.", "group": "A", "negativeFraming": false, "globalEffect": 1},
 
   // Group B
   {"id": 3, "question": "God is wholly transcendent, existing separately from the universe and its creation.", "group": "B", "negativeFraming": false, "globalEffect": -1},
-  {"id": 4, "question": "My “awakening” journey is guided by a personal connection to a specific God or higher power.", "group": "B", "negativeFraming": false, "globalEffect": -1},
+  {"id": 4, "question": "My awakening journey is guided by a personal connection to a specific God or higher power.", "group": "B", "negativeFraming": false, "globalEffect": -1},
   {"id": 5, "question": "Certain spiritual or religious symbols and rituals offer an elevated significance in the journey of awakening.", "group": "B", "negativeFraming": false, "globalEffect": -1},
 
   // Group C

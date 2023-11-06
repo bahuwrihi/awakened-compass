@@ -1,17 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QV3YKGRPCD"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-QV3YKGRPCD');
-    </script>
-
+    <!-- Add your head content here -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:400,700" rel="stylesheet">
-    <link href='style.css' rel='stylesheet' type='text/css'>
+    <link href="style.css" rel="stylesheet" type="text/css">
     <title>SapplyValues Results</title>
     <link rel="icon" type="x-icon" href="icon.png">
     <link rel="shortcut icon" type="x-icon" href="icon.png">
@@ -20,86 +12,192 @@
 </head>
 
 <body>
-    <h1 class="title">SapplyValues</h1>
+    <h1 class="title">SapplyValues Results</h1>
     <svg id="svgHeader" style="width: 100%;" viewBox="0 0 112 19">
         <text x="50%" y="15" class="svgHeader">SapplyValues</text>
     </svg>
     <hr>
+    <img src="" id="banner">
+    <button class="button" onclick="location.href='index.html';">Back</button>
 
-    <h1 class="title">Results</h1></br>
-    <p style="text-align:center;margin:-2px auto">If you like this site, <a href="https://ko-fi.com/sunkdatadiver">consider chucking me a few bucks</a> :)))</p></br>
-    <svg id="svgHeader" style="width: 100%;" viewBox="0 0 112 19">
-        <text x="50%" y="15" class="svgHeader">Results</text>
-    </svg>
-
-    <canvas id="resultsCanvas" width="1850" height="1600"></canvas>
-    <br>
-    <p style="text-align:center;margin:-2px auto">Hint: you can download this image directly. No need to screenshot!</p></br>
-    <button class="button" onclick="location.href='index.html';" style="background-color: #2196f3;">Back</button> <br>
+    <div class="container">
+        <div class="global-score" id="globalScore">
+        </div>
+        <div class="global-graph" id="globalGraph">
+            <div class="global-label">Transcendence</div>
+            <div class="global-label">Embodyment</div>
+            <div class="global-label">Integration</div>
+            <div class="global-label">Awakening</div>
+        </div>
+        
+        <div class="group-grid">
+            <div class="group-container">
+                <div class="group-label">Group A</div>
+                <div class="group-graph" id="groupAGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group B</div>
+                <div class="group-graph" id="groupBGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group C</div>
+                <div class="group-graph" id="groupCGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group D</div>
+                <div class="group-graph" id="groupDGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group E</div>
+                <div class="group-graph" id="groupEGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group F</div>
+                <div class="group-graph" id="groupFGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group G</div>
+                <div class="group-graph" id="groupGGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group H</div>
+                <div class="group-graph" id="groupHGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group I</div>
+                <div class="group-graph" id="groupIGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group J</div>
+                <div class="group-graph" id="groupJGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group K</div>
+                <div class="group-graph" id="groupKGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group L</div>
+                <div class="group-graph" id="groupLGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group M</div>
+                <div class="group-graph" id="groupMGraph"></div>
+            </div>
+            <div class="group-container">
+                <div class="group-label">Group N</div>
+                <div class="group-graph" id="groupNGraph"></div>
+            </div>        
+        </div>
+    </div>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const globalScore = parseFloat(urlParams.get("global")) || 0; // Assuming you pass the global score in the URL
+         // Your JavaScript code here
+         const urlParams = new URLSearchParams(window.location.search);
+        const groupScores = {};
+        const globalScore = parseFloat(urlParams.get("global")) || 0;
 
-        // Define predefined positions for each group
-        const predefinedPositions = {
-        A: [{x: 775, y: 531}, {x: 814, y: 357}, {x: 850, y: 200}],
-    	B: [{x: 825, y: 556}, {x: 937, y: 414}, {x: 1037, y: 290}],
-   	C: [{x: 859, y: 598}, {x: 1022, y: 521}, {x: 1166, y: 451}],
-   	D: [{x: 871, y: 653}, {x: 1053, y: 653}, {x: 1212, y: 653}],
-   	E: [{x: 860, y: 707}, {x: 1024, y: 787}, {x: 1166, y: 855}],
-   	F: [{x: 825, y: 751}, {x: 940, y: 985}, {x: 1038, y: 1017}],
-    	G: [{x: 775, y: 776}, {x: 816, y: 954}, {x: 851, y: 1107}],
-    	H: [{x: 718, y: 775}, {x: 677, y: 955}, {x: 643, y: 1106}],
-    	I: [{x: 669, y: 750}, {x: 554, y: 894}, {x: 456, y: 1016}],
-    	J: [{x: 634, y: 708}, {x: 469, y: 787}, {x: 329, y: 854}],
-    	K: [{x: 622, y: 653}, {x: 440, y: 653}, {x: 283, y: 653}],
-    	L: [{x: 634, y: 599}, {x: 472, y: 521}, {x: 329, y: 452}],
-    	M: [{x: 668, y: 556}, {x: 557, y: 415}, {x: 457, y: 290}],
-    	N: [{x: 719, y: 531}, {x: 678, y: 357}, {x: 642, y: 200}]
-    };
- window.onload = function () {
-            const c = document.getElementById("resultsCanvas");
-            const ctx = c.getContext("2d");
-            const background = new Image();
+        for (const group of ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N']) {
+            groupScores[group] = parseFloat(urlParams.get(group.toLowerCase())) || 0;
+        }
 
-            background.onload = function () {
-                ctx.drawImage(background, 0, 0, 1850, 1600);
+        // Define line colors for each group
+        const lineColors = ['#f44336', '#2196f3', '#4caf50', '#ff9800', '#9c27b0', '#673ab7', '#e91e63', '#795548', '#607d8b', '#00bcd4', '#009688', '#8bc34a', '#cddc39', '#ffeb3b'];
+        
+        function createPointGraph(containerId, score, groupColor, zIndex) {
+            const container = document.getElementById(containerId);
+            const graph = document.createElement("div");
+            graph.className = "point-graph";
+            const point = document.createElement("div");
+            if (containerId === 'globalGraph') {
+                point.className = "global-point";
+                point.style.zIndex = zIndex; // Set a higher z-index for the global dots
+            } else {
+                point.className = "point";
+            }
+            point.style.backgroundColor = groupColor;
 
-                // Draw the line for global score
-                var x = 200 + (1000 * (globalScore + 10) / 20);
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, 1600);
-                ctx.lineWidth = 2;
-                ctx.strokeStyle = "red";
-                ctx.stroke();
+            // Declare positionLeft
+            let positionLeft;
 
-                // Draw dots for each group
-                for (const [group, positions] of Object.entries(predefinedPositions)) {
-                    const score = parseFloat(urlParams.get(group)) || 0; // Get the score for the group from URL parameters
-                    const third = Math.floor(score / (2 / 3));
-                    const position = positions[third];
+            // Calculate the position of the point based on the score
+            if (containerId === 'globalGraph') {
+                positionLeft = ((score + 84) / 168) * 100 + "%";
+            }
 
-                    ctx.beginPath();
-                    ctx.arc(position.x, position.y, 25, 0, 2 * Math.PI);
-                    ctx.fillStyle = 'red';
-                    ctx.fill();
-                    ctx.stroke();
+            // Now you can use positionLeft here
+            point.style.left = positionLeft;
+
+            graph.appendChild(point);
+            container.appendChild(graph);
+        }
+
+        // Usage for the global graph (e.g., set zIndex to 2 for dots on top):
+        createPointGraph('globalGraph', globalScore, 'red', 2);
+
+
+        document.getElementById('globalScore').textContent = globalScore;
+
+        // Function to create lines connecting the dots
+        function createLines(containerId, scores) {
+            const container = document.getElementById(containerId);
+
+            for (let i = 0; i < scores.length - 1; i++) {
+                const line = document.createElement("div");
+                line.className = "line";
+                line.style.height = "10px"; // Adjust height as needed
+
+                const lineFill = document.createElement("div");
+                lineFill.className = "line-fill";
+                lineFill.style.backgroundColor = container.firstChild.firstChild.style.backgroundColor;
+
+                // Calculate the width of the line fill
+                const fillWidth = ((scores[i + 1] + 6) / 12) * 100 - ((scores[i] + 6) / 12) * 100;
+                lineFill.style.width = `${fillWidth}%`;
+
+                line.appendChild(lineFill);
+                container.appendChild(line);
+            }
+        }
+
+        function createGlobalLine(containerId, scores, isGlobal) {
+            const container = document.getElementById(containerId);
+            const containerElement = isGlobal ? container : container.firstChild; // Adjust the element to access based on isGlobal flag
+
+            for (let i = 0; i < scores.length - 1; i++) {
+                const line = document.createElement("div");
+                line.className = "line";
+                line.style.height = "30px"; // Adjust height as needed
+
+                const lineFill = document.createElement("div");
+                lineFill.className = "line-fill";
+
+                // Calculate the width of the line fill
+                const fillWidth = ((scores[i + 1] + 6) / 12) * 100 - ((scores[i] + 6) / 12) * 100;
+                lineFill.style.width = `${fillWidth}%`;
+
+                if (isGlobal) {
+                    lineFill.style.backgroundImage = 'linear-gradient(to right, green, blue)'; // Set the desired color for the global graph line
+                    lineFill.style.borderRadius = "0px";
+                } else {
+                    lineFill.style.backgroundColor = containerElement.firstChild.style.backgroundColor;
                 }
 
-                // Draw the text
-                ctx.font = "50px Montserrat";
-                ctx.textAlign = "center";
-                ctx.fillStyle = "#222222";
-                ctx.fillText("Global Score: " + globalScore, 725, 1375);
-                ctx.textAlign = "right";
-                ctx.font = "60px Montserrat";
-                ctx.fillText("SapplyValues.github.io", 1820, 1560);
-            };
+                line.appendChild(lineFill);
+                containerElement.appendChild(line);
+            }
+        }
 
-            background.src = "https://bahuwrihi.github.io/awakened-compass/compass.png";
-        };
+
+        // Create the global graph for the global score
+        
+        createGlobalLine('globalGraph', [-6,6], true);
+       
+        // Iterate through the group scores and create point graphs and lines
+        for (const group of ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N']) {
+            createPointGraph(`group${group}Graph`, groupScores[group], lineColors.pop());
+            createLines(`group${group}Graph`, [-6, groupScores[group]]);
+        }
+
     </script>
 </body>
 </html>

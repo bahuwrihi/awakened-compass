@@ -1,29 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QV3YKGRPCD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-QV3YKGRPCD');
-</script>
-
-    <meta charset="utf-8">
-    <title>SapplyValues Quiz</title>
-
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:400,700" rel="stylesheet">
-    <link href='style.css' rel='stylesheet' type='text/css'>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>SapplyValues Quiz</title>
     <link rel="icon" type="x-icon" href="icon.png">
-    <link rel="shortcut icon" type="x-icon" href="icon.png">
-
+    <link rel="shortcut icon type="x-icon" href="icon.png">
     <script type="application/javascript" src="questions.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
     <h1 class="title">SapplyValues</h1>
     <svg id="svgHeader" style="width: 100%;" viewBox="0 0 112 19">
@@ -41,22 +27,23 @@
     <button class="small_button_off" id="back_button_off">Back</button><br>
 
     <script>
-        // variables
-        var answers = new Object();     // Store user's answers
+        // JavaScript code for the quiz functionality
+        // (Including initialization, handling user answers, and progressing through questions)
+        var answers = {};     // Store user's answers
         var qn = 0; // Current question order
 
         // Populate questionsObject
-        var questionsObject = new Object();     // Question objects with ID keys
+        var questionsObject = {};     // Question objects with ID keys
         questions.forEach(populateQO);
 
         function populateQO(value) {
-            questionsObject[value['id']] = value
+            questionsObject[value['id']] = value;
         }
 
         // Populate & shuffle questionsOrder
-        var questionsOrder = Object.keys(questionsObject); //Array of shuffled question IDs
+        var questionsOrder = Object.keys(questionsObject); // Array of shuffled question IDs
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get("shuffle") == "true") {
+        if (urlParams.get("shuffle") === "true") {
             shuffleArray(questionsOrder);
         }
 
@@ -75,17 +62,16 @@
             $("#question-number").html("Question " + (qn + 1) + " of " + (questionsOrder.length));
 
             if (jQuery.isEmptyObject(answers)) {
-                $('#back_button').hide()
-                $('#back_button_off').show()
+                $('#back_button').hide();
+                $('#back_button_off').show();
             } else {
-                $('#back_button').show()
-                $('#back_button_off').hide()
+                $('#back_button').show();
+                $('#back_button_off').hide();
             }
         }
 
         // Next question
         function next_question(answer) {
-            console.log("Next question called. Current question number: ", qn);
             if (qn === questionsOrder.length) {
                 return;
             }
@@ -96,7 +82,6 @@
             if (qn < questionsOrder.length) {
                 init_question();
             } else {
-                console.log("Last question answered. Calling results function.");
                 results();
             }
         }
@@ -104,8 +89,8 @@
         // Previous question
         function prev_question() {
             if (jQuery.isEmptyObject(answers)) {
-                $('#back_button').hide()
-                $('#back_button_off').show()
+                $('#back_button').hide();
+                $('#back_button_off').show();
                 return;
             }
             qn--;
@@ -116,70 +101,43 @@
 
         // RESULTS
         function results() {
-    console.log("Results function called");
+            var pct = percentageCalculation();
+            var redirectionUrl = ((window.location.hostname == "bahuwrihi.github.io" && window.location.pathname.startsWith("/awakened-compass/")) ? 'feedback.html' : 'results.html');
 
-    // Calculate final results
-    var pct = percentageCalculation();
-var redirectionUrl = ((window.location.hostname == "bahuwrihi.github.io" && window.location.pathname.startsWith("/awakened-compass/")) ? 'feedback.html' : 'results.html');
-
-    // Prepare arguments for URL
-    var args = '?';
-    for (const [key, value] of Object.entries(pct.groups)) {
-        args += `${key}=${value}&`;
-    }
-    args += `global=${pct.global}`;
-            location.href = redirectionUrl + args;
-
-
-        // prepare arguments
-        var args = '?';
-        for (const i in Object.keys(pct)) {
-            effectName = Object.keys(pct)[i]
-            args += `${effectName}=${pct[effectName]}`
-
-            var cycle = parseInt(i)
-            if (cycle+1 !== Object.keys(pct).length) {
-                args += '&'
+            // Prepare arguments for URL
+            var args = '?';
+            for (const group of Object.keys(pct.groups)) {
+                args += `${group.toLowerCase()}=${pct.groups[group]}&`;
             }
-        }
-        
+            args += `global=${pct.global}`;
+            location.href = redirectionUrl + args;
         }
 
         // Calculate percentage
         function percentageCalculation() {
-    var groupScores = new Object(); // Scores for each group
-    var globalScore = 0; // Total score across all questions
-    var normalizedGroupScores = new Object(); // Normalized scores for each group
-    var normalizedGlobalScore; // Normalized total score
+            var groupScores = {};
+            var globalScore = 0;
 
-    // Initialize groupScores object
-    if (questionsObject[0] && questionsObject[0].effects) {
-        for (const group of Object.keys(questionsObject[0].effects)) {
-            groupScores[group] = 0;
-        }
-    }
-
-    // Calculate group scores and global score
-    for (const id in answers) {
-        if (answers[id] !== null && questionsObject[id] && questionsObject[id].effects) {
-            for (const group in questionsObject[id].effects) {
-                if (typeof groupScores[group] !== 'undefined') {
-                    groupScores[group] += answers[id] * questionsObject[id].effects[group];
-                    globalScore += answers[id] * questionsObject[id].effects[group];
+            for (const id in answers) {
+                if (answers[id] !== null && questionsObject[id] && questionsObject[id].group) {
+                    var group = questionsObject[id].group;
+                    var effect = questionsObject[id].globalEffect;
+                    groupScores[group] = (groupScores[group] || 0) + answers[id] * effect;
+                    globalScore += answers[id] * effect;
                 }
             }
+
+            // Normalize group scores to range -6 to 6
+            var normalizedGroupScores = {};
+            for (const group in groupScores) {
+                normalizedGroupScores[group] = groupScores[group];
+            }
+
+            // Normalize global score to range -84 to 84
+            var normalizedGlobalScore = globalScore;
+
+            return { groups: normalizedGroupScores, global: normalizedGlobalScore };
         }
-    }
-
-    // Normalize group scores to range 0 to 2
-    for (const group in groupScores) {
-        normalizedGroupScores[group] = ((groupScores[group] + 6) / 12).toFixed(2);
-    }
-
-    // Normalize global score to range -10 to 10
-    normalizedGlobalScore = ((globalScore / 84) * 10).toFixed(2);
-
-    return { groups: normalizedGroupScores, global: normalizedGlobalScore };
-}
     </script>
 </body>
+</html>
